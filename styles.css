@@ -169,24 +169,32 @@ input[type='button']:active {
 }
 
 .copyGroup {
-  align-items: center;
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 10px;
 }
 
 .copiedTag {
-  display: none;
+  display: flex;
   align-items: center;
   gap: 6px;
-
   padding: 4px 8px;
-  border-radius: 5px;
-
   background: #ecfdf5;
   color: #16a34a;
-
+  border-radius: 6px;
   font-size: 0.8rem;
   font-weight: 500;
+  opacity: 0;
+  transform: translateY(4px);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.copiedTag.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .copiedTag span {
@@ -196,6 +204,19 @@ input[type='button']:active {
 .copiedIcon {
   width: 22px;
   height: 22px;
+}
+
+.checkPath {
+  stroke: #16a34a;
+
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+
+  transition: stroke-dashoffset 0.4s ease;
+}
+
+.copiedTag.visible .checkPath {
+  stroke-dashoffset: 0;
 }
 
 /* FOOTER */

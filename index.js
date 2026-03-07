@@ -133,10 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
 btnCopy.addEventListener('click', () => {
   navigator.clipboard.writeText(response.value);
 
-  copiedTag.style.display = 'flex';
+  copiedTag.classList.add('visible');
 
   setTimeout(() => {
-    copiedTag.style.display = 'none';
+    copiedTag.classList.remove('visible');
   }, 2000);
 });
 
