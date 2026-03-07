@@ -102,18 +102,34 @@ function getAmountInWords(amount) {
     .replace(/\s*,\s*/g, ', ');
 }
 
-// const numTest = 60900001.0;
-// console.log(amountToWords(numTest));
-
 /*---------------------------------------
  Dom Functions
 ---------------------------------------*/
 
 const inputAmount = document.querySelector('#amount');
-const response = document.querySelector('#response');
-const btnCopy = document.querySelector('#btnCopyText');
-const copiedTag = document.querySelector('.copiedTag');
 const btnWrite = document.querySelector('#btnWriteAmountWords');
+const btnCopy = document.querySelector('#btnCopyText');
+const response = document.querySelector('#response');
+const copiedTag = document.querySelector('.copiedTag');
+const fade = document.querySelector('#fade');
+const messageText = document.querySelector('#message p');
+const btnCloseMessage = document.querySelector('#closeMessage');
+
+const modalMessage = (msg) => {
+  messageText.innerText = msg;
+  fade.classList.toggle('hide');
+};
+
+btnCloseMessage.addEventListener('click', () => {
+  modalMessage();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    modalMessage();
+    inputAmount.focus();
+  }
+});
 
 inputAmount.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
@@ -126,11 +142,19 @@ inputAmount.addEventListener('input', () => {
 });
 
 btnWrite.addEventListener('click', () => {
-  const amount = Number(inputAmount.value.replace(/\./g, '').replace(',', '.').replace('R$', ''));
+  const amount = Number(inputAmount.value.replace(/\./g, '').replace(',', '.').replace('R$', '').trim());
 
-  if (!isNaN(amount)) {
-    inputAmount.value = amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  if (Number.isNaN(amount) || amount <= 0) {
+    modalMessage('ERRO: Valor inválido ou inexistente.');
+    return;
   }
+
+  if (amount > 999999999999999) {
+    modalMessage('ERRO: O valor fornecido é grande demais para ser escrito por extenso.');
+    return;
+  }
+
+  inputAmount.value = amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   const amountInWords = getAmountInWords(amount);
   response.value = amountInWords;
@@ -163,14 +187,3 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   inputAmount.focus();
 });
-
-// inputAmount.addEventListener('input', () => {
-//   let value = inputAmount.value.replace(/\D/g, '');
-
-//   value = (Number(value) / 100).toLocaleString('pt-BR', {
-//     minimumFractionDigits: 2,
-//     maximumFractionDigits: 2,
-//   });
-
-//   inputAmount.value = value;
-// });
