@@ -115,18 +115,33 @@ const fade = document.querySelector('#fade');
 const message = document.querySelector('#message p');
 const btnClose = document.querySelector('#closeMessage');
 
-const modalMessage = (msg) => {
+function showModalMessage(msg) {
   message.innerText = msg;
-  fade.classList.toggle('hide');
-};
+  fade.classList.remove('hide');
+}
+
+function closeModalMessage() {
+  fade.classList.add('hide');
+  message.innerText = '';
+}
+
+function parseAmount(inputAmount) {
+  const amount = Number(inputAmount.replace(/\./g, '').replace(',', '.').replace('R$', '').trim());
+  return amount;
+}
+
+function formatAmount(amount) {
+  const currencyAmount = amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  return currencyAmount;
+}
 
 btnClose.addEventListener('click', () => {
-  modalMessage();
+  closeModalMessage();
 });
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
-    modalMessage();
+    closeModalMessage();
     inputAmount.focus();
   }
 });
@@ -146,19 +161,19 @@ inputAmount.addEventListener('input', () => {
 });
 
 btnWrite.addEventListener('click', () => {
-  const amount = Number(inputAmount.value.replace(/\./g, '').replace(',', '.').replace('R$', '').trim());
+  const amount = parseAmount(inputAmount.value);
 
   if (Number.isNaN(amount) || amount <= 0) {
-    modalMessage('ERRO: Valor inválido ou inexistente.');
+    showModalMessage('ERRO: Valor inválido ou inexistente.');
     return;
   }
 
   if (amount > 999999999999999) {
-    modalMessage('ERRO: O valor fornecido é grande demais para ser escrito por extenso.');
+    showModalMessage('ERRO: O valor fornecido é grande demais para ser escrito por extenso.');
     return;
   }
 
-  inputAmount.value = amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  inputAmount.value = formatAmount(amount);
 
   const amountInWords = getAmountInWords(amount);
   response.value = amountInWords;
