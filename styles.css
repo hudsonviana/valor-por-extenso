@@ -1,0 +1,224 @@
+/* RESET BÁSICO */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* BASE DO DOCUMENTO */
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #222;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+  width: 100%;
+  max-width: 650px;
+
+  background: white;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+
+  overflow: hidden;
+}
+
+/* HEADER */
+.header {
+  background: #1f2937;
+  color: white;
+
+  padding: 20px;
+
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ÁREA PRINCIPAL */
+.main {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* BLOCOS */
+.main > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* LABEL */
+.main span {
+  font-weight: 500;
+  color: #444;
+}
+
+/* INPUT DE VALOR */
+#amount {
+  padding: 10px 12px;
+
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+
+  font-size: 1rem;
+
+  transition:
+    border 0.2s,
+    box-shadow 0.2s;
+}
+
+#amount:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* PLACEHOLDER */
+#amount::placeholder {
+  font-size: 0.9rem;
+  color: #999;
+  font-style: italic;
+}
+
+/* TEXTAREA */
+#response {
+  width: 100%;
+  min-height: 110px;
+
+  padding: 12px;
+
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+
+  font-size: 0.95rem;
+  resize: vertical;
+
+  background: #fafafa;
+}
+
+/* BOTÕES */
+input[type='button'] {
+  align-self: flex-start;
+
+  padding: 8px 14px;
+
+  border-radius: 6px;
+  border: none;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  background: #2563eb;
+  color: white;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    transform 0.1s,
+    box-shadow 0.1s;
+}
+
+input[type='button']:hover {
+  background: #1d4ed8;
+}
+
+input[type='button']:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* BOTÃO COPIAR */
+#btnCopyText {
+  background: #4b5563;
+}
+
+#btnCopyText:hover {
+  background: #374151;
+}
+
+.copyGroup {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.copiedTag {
+  display: none;
+  align-items: center;
+  gap: 6px;
+
+  padding: 4px 8px;
+  border-radius: 5px;
+
+  background: #ecfdf5;
+  color: #16a34a;
+
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.copiedTag span {
+  color: #16a34a;
+}
+
+.copiedIcon {
+  width: 22px;
+  height: 22px;
+}
+
+/* FOOTER */
+.footer {
+  background: #f3f4f6;
+
+  padding: 12px;
+
+  text-align: center;
+
+  font-size: 0.8rem;
+  color: #666;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+  .main {
+    padding: 20px;
+  }
+
+  .header {
+    font-size: 1.1rem;
+  }
+}

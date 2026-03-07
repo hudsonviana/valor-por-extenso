@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Valor por extenso</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <span>Escrever Valor por Extenso</span>
+      </div>
+      <div class="main">
+        <div>
+          <span>Valor em R$</span>
+          <input type="text" id="amount" placeholder="Digite aqui o valor" />
+          <input type="button" id="btnWriteAmountWords" value="Escrever por extenso" />
+        </div>
+        <div>
+          <textarea name="response" id="response" readonly></textarea>
+          <div class="copyGroup">
+            <input type="button" id="btnCopyText" value="Copiar texto" />
+            <div class="copiedTag">
+              <img src="./checkmark-done.svg" alt="ok" class="copiedIcon" />
+              <span>Copiado!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <small> <span class="currentYear"></span> | <span>Desenvolvido por Hudson Andrade Viana</span> | <span>v2.0</span> </small>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
