@@ -60,7 +60,7 @@ function getClassSeparator(className, reminder) {
   return null;
 }
 
-function amountToWords(amount) {
+function getAmountInWords(amount) {
   const result = [];
   const stringAmount = String(amount.toFixed(2));
   const [integerAmount, fractionAmount] = stringAmount.split('.').map(Number);
@@ -121,6 +121,40 @@ inputAmount.addEventListener('keydown', (event) => {
   }
 });
 
+inputAmount.addEventListener('input', () => {
+  response.value = '';
+});
+
+btnWrite.addEventListener('click', () => {
+  const amount = Number(inputAmount.value.replace(/\./g, '').replace(',', '.').replace('R$', ''));
+
+  if (!isNaN(amount)) {
+    inputAmount.value = amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  const amountInWords = getAmountInWords(amount);
+  response.value = amountInWords;
+});
+
+btnCopy.addEventListener('click', () => {
+  if (!response.value) return;
+
+  let amountText = inputAmount.value.trim();
+  if (!amountText.startsWith('R$')) {
+    amountText = `R$ ${amountText}`;
+  }
+
+  const fullText = `${amountText} (${response.value})`;
+
+  navigator.clipboard.writeText(fullText);
+
+  copiedTag.classList.add('visible');
+
+  setTimeout(() => {
+    copiedTag.classList.remove('visible');
+  }, 2000);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const element = document.querySelector('.currentYear');
 
@@ -128,16 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
     element.textContent = new Date().getFullYear();
   }
   inputAmount.focus();
-});
-
-btnCopy.addEventListener('click', () => {
-  navigator.clipboard.writeText(response.value);
-
-  copiedTag.classList.add('visible');
-
-  setTimeout(() => {
-    copiedTag.classList.remove('visible');
-  }, 2000);
 });
 
 // inputAmount.addEventListener('input', () => {
