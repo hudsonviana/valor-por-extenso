@@ -135,6 +135,20 @@ function formatAmount(amount) {
   return currencyAmount;
 }
 
+function typeWriter(element, text, speed = 30) {
+  element.value = '';
+  let index = 0;
+
+  const interval = setInterval(() => {
+    element.value += text.charAt(index);
+    index++;
+
+    if (index >= text.length) {
+      clearInterval(interval);
+    }
+  }, speed);
+}
+
 btnClose.addEventListener('click', () => {
   closeModalMessage();
 });
@@ -177,6 +191,7 @@ btnWrite.addEventListener('click', () => {
 
   const amountInWords = getAmountInWords(amount);
   response.value = amountInWords;
+  // typeWriter(response, amountInWords, 25);
 });
 
 btnCopy.addEventListener('click', () => {
