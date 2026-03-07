@@ -112,15 +112,15 @@ const btnCopy = document.querySelector('#btnCopyText');
 const response = document.querySelector('#response');
 const copiedTag = document.querySelector('.copiedTag');
 const fade = document.querySelector('#fade');
-const messageText = document.querySelector('#message p');
-const btnCloseMessage = document.querySelector('#closeMessage');
+const message = document.querySelector('#message p');
+const btnClose = document.querySelector('#closeMessage');
 
 const modalMessage = (msg) => {
-  messageText.innerText = msg;
+  message.innerText = msg;
   fade.classList.toggle('hide');
 };
 
-btnCloseMessage.addEventListener('click', () => {
+btnClose.addEventListener('click', () => {
   modalMessage();
 });
 
@@ -134,6 +134,10 @@ document.addEventListener('keydown', (event) => {
 inputAmount.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     btnWrite.click();
+  }
+
+  if (event.key === '.') {
+    event.preventDefault();
   }
 });
 
