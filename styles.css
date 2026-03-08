@@ -256,7 +256,8 @@ input[type='button']:active {
   padding: 20px;
   border-radius: 8px;
   position: relative;
-  width: 40%;
+  width: 30%;
+  max-width: 500px;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
@@ -302,5 +303,9 @@ input[type='button']:active {
 
   .header {
     font-size: 1.1rem;
+  }
+
+  #message {
+    width: 70%;
   }
 }

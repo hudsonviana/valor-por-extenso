@@ -112,17 +112,20 @@ const btnCopy = document.querySelector('#btnCopyText');
 const response = document.querySelector('#response');
 const copiedTag = document.querySelector('.copiedTag');
 const fade = document.querySelector('#fade');
-const message = document.querySelector('#message p');
+const modalTitle = document.querySelector('#message h4');
+const modalMessage = document.querySelector('#message p');
 const btnClose = document.querySelector('#closeMessage');
 
-function showModalMessage(msg) {
-  message.innerText = msg;
+function showModalMessage(title, msg) {
+  modalTitle.innerText = title;
+  modalMessage.innerText = msg;
   fade.classList.remove('hide');
 }
 
 function closeModalMessage() {
   fade.classList.add('hide');
-  message.innerText = '';
+  modalTitle.innerText = '';
+  modalMessage.innerText = '';
 }
 
 function parseAmount(inputAmount) {
@@ -178,12 +181,12 @@ btnWrite.addEventListener('click', () => {
   const amount = parseAmount(inputAmount.value);
 
   if (Number.isNaN(amount) || amount <= 0) {
-    showModalMessage('ERRO: Valor inválido ou inexistente.');
+    showModalMessage('ERRO', 'Valor inválido ou inexistente.');
     return;
   }
 
   if (amount > 999999999999999) {
-    showModalMessage('ERRO: O valor fornecido é grande demais para ser escrito por extenso.');
+    showModalMessage('ERRO', 'O valor fornecido é grande demais para ser escrito por extenso.');
     return;
   }
 
