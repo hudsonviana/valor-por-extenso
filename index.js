@@ -174,6 +174,11 @@ inputAmount.addEventListener('keydown', (event) => {
 });
 
 inputAmount.addEventListener('input', () => {
+  inputAmount.value = inputAmount.value.replace(/\./g, '');
+  response.value = '';
+});
+
+inputAmount.addEventListener('input', () => {
   response.value = '';
 });
 
