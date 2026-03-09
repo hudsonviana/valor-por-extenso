@@ -174,7 +174,19 @@ inputAmount.addEventListener('keydown', (event) => {
 });
 
 inputAmount.addEventListener('input', () => {
-  inputAmount.value = inputAmount.value.replace(/\./g, '');
+  let value = inputAmount.value;
+
+  // permite apenas números e vírgula
+  value = value.replace(/[^\d,]/g, '');
+
+  // garante apenas uma vírgula
+  const parts = value.split(',');
+  if (parts.length > 2) {
+    value = parts[0] + ',' + parts.slice(1).join('');
+  }
+
+  inputAmount.value = value;
+
   response.value = '';
 });
 
