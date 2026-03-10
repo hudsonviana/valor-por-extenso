@@ -6,20 +6,49 @@ const startInput = document.getElementById('startNumber');
 const endInput = document.getElementById('endNumber');
 const btnDraw = document.getElementById('btnDrawNumber');
 const result = document.getElementById('drawResult');
-const track = result.querySelector('.slotTrack');
 const sound = document.getElementById('drawSound');
+const fade = document.querySelector('#fade');
+const modalTitle = document.querySelector('#message h4');
+const modalMessage = document.querySelector('#message p');
+const btnClose = document.querySelector('#closeMessage');
+
+function showModalMessage(title, msg) {
+  modalTitle.innerText = title;
+  modalMessage.innerText = msg;
+  fade.classList.remove('hide');
+}
+
+function closeModalMessage() {
+  fade.classList.add('hide');
+  modalTitle.innerText = '';
+  modalMessage.innerText = '';
+}
+
+btnClose.addEventListener('click', () => {
+  closeModalMessage();
+});
 
 btnDraw.addEventListener('click', () => {
   const start = parseInt(startInput.value);
   const end = parseInt(endInput.value);
 
-  if (isNaN(start) || isNaN(end)) {
-    result.textContent = 'Informe os dois valores.';
+  if (Number.isNaN(start) || Number.isNaN(end)) {
+    showModalMessage('ERRO', 'Valor inválido ou inexistente');
     return;
   }
 
-  if (start > end) {
-    result.textContent = 'O valor inicial não pode ser maior que o final.';
+  if (start < 1 || end < 1 || start > 99 || end > 99) {
+    showModalMessage('ERRO', 'Os valores devem estar entre 1 e 99');
+    return;
+  }
+
+  if (start >= end) {
+    showModalMessage('ERRO', 'O valor inicial deve ser menor que o final');
+    return;
+  }
+
+  if (end - start < 1) {
+    showModalMessage('ERRO', 'Intervalo muito pequeno para sorteio');
     return;
   }
 
