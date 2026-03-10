@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Sorteador de Números</title>
+  </head>
+
+  <body>
+    <!-- MENU LATERAL -->
+
+    <div id="fade" class="hide">
+      <div id="message">
+        <div class="alert">
+          <h4>[Mensagem]</h4>
+          <p>[texto da mensagem...]</p>
+          <input type="button" id="closeMessage" value="Fechar" />
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="header">
+        <button id="menuBtn" class="menuBtn">☰</button>
+        <span>Sorteador de números</span>
+      </div>
+      <nav id="sideMenu" class="sideMenu">
+        <a href="index.html">Valor por extenso</a>
+        <a href="sorteio.html">Sorteador</a>
+      </nav>
+
+      <div id="menuOverlay" class="menuOverlay"></div>
+      <!-- CONTEÚDO PRINCIPAL -->
+
+      <div class="main">
+        <div>
+          <span>Valor inicial</span>
+          <input type="text" id="startNumber" inputmode="numeric" pattern="[0-9]*" placeholder="Ex: 1" />
+        </div>
+
+        <div>
+          <span>Valor final</span>
+          <input type="text" id="endNumber" inputmode="numeric" pattern="[0-9]*" placeholder="Ex: 100" />
+        </div>
+
+        <div>
+          <input type="button" id="btnDrawNumber" value="Sortear número" />
+        </div>
+
+        <div>
+          <span>Resultado</span>
+          <textarea id="drawResult" readonly></textarea>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+
+      <div class="footer">
+        <small>
+          <span class="currentYear"></span>
+          |
+          <span>Desenvolvido por Hudson Andrade Viana</span>
+          |
+          <span>v2.0</span>
+        </small>
+      </div>
+    </div>
+
+    <script src="./sorteio.js"></script>
+  </body>
+</html>

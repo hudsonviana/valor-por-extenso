@@ -93,7 +93,9 @@ body {
 }
 
 /* INPUT DE VALOR */
-#amount {
+#amount,
+#startNumber,
+#endNumber {
   padding: 10px 12px;
 
   border-radius: 6px;
@@ -106,7 +108,9 @@ body {
     box-shadow 0.2s;
 }
 
-#amount:focus {
+#amount:focus,
+#startNumber:focus,
+#endNumber:focus {
   outline: none;
   border-color: #2563eb;
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
@@ -365,6 +369,14 @@ input[type='button']:active {
 .menuOverlay.visible {
   opacity: 1;
   pointer-events: all;
+}
+
+/* SORTEIO */
+
+#drawResult {
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 600;
 }
 
 @-webkit-keyframes animatetop {
