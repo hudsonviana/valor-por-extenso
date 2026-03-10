@@ -498,6 +498,12 @@ input[type='button']:active {
     background: rgb(255, 255, 255);
   }
 
+  input,
+  button,
+  textarea {
+    font-size: 16px;
+  }
+
   .container {
     border-radius: 0;
     box-shadow: none;
@@ -526,6 +532,19 @@ input[type='button']:active {
 
   #message {
     width: 70%;
+  }
+
+  #btnDrawNumber {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .main input[type='text'] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
   }
 
   #btnDrawNumber {
