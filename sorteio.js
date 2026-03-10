@@ -11,6 +11,25 @@ const fade = document.querySelector('#fade');
 const modalTitle = document.querySelector('#message h4');
 const modalMessage = document.querySelector('#message p');
 const btnClose = document.querySelector('#closeMessage');
+const historyList = document.getElementById('historyList');
+
+let history = [];
+
+function addToHistory(number) {
+  history.unshift(number);
+
+  if (history.length > 5) {
+    history.pop();
+  }
+
+  historyList.innerHTML = '';
+
+  history.forEach((n) => {
+    const li = document.createElement('li');
+    li.textContent = n;
+    historyList.appendChild(li);
+  });
+}
 
 function showModalMessage(title, msg) {
   modalTitle.innerText = title;
@@ -30,13 +49,6 @@ btnClose.addEventListener('click', () => {
 
 let drawing = false;
 btnDraw.addEventListener('click', () => {
-  if (drawing) return;
-
-  drawing = true;
-
-  btnDraw.disabled = true;
-  btnDraw.value = 'Sorteando...';
-
   const start = parseInt(startInput.value);
   const end = parseInt(endInput.value);
 
@@ -59,6 +71,13 @@ btnDraw.addEventListener('click', () => {
     showModalMessage('ERRO', 'Intervalo muito pequeno para sorteio');
     return;
   }
+
+  if (drawing) return;
+
+  drawing = true;
+
+  btnDraw.disabled = true;
+  btnDraw.value = 'Sorteando...';
 
   const finalNumber = Math.floor(Math.random() * (end - start + 1)) + start;
 
@@ -98,6 +117,7 @@ btnDraw.addEventListener('click', () => {
         sound.currentTime = 0;
       }
 
+      addToHistory(finalNumber);
       drawing = false;
 
       btnDraw.disabled = false;

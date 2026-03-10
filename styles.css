@@ -465,6 +465,30 @@ input[type='button']:active {
   cursor: not-allowed;
 }
 
+.drawHistory {
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.drawHistory span {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+#historyList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#historyList li {
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  background: #f3f4f6;
+}
+
 /* RESPONSIVIDADE */
 @media (max-width: 600px) {
   body {
