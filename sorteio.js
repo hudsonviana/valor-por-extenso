@@ -1,11 +1,13 @@
+/*---------------------------------------
+ DOM Functions
+---------------------------------------*/
+
 const startInput = document.getElementById('startNumber');
 const endInput = document.getElementById('endNumber');
 const btnDraw = document.getElementById('btnDrawNumber');
 const result = document.getElementById('drawResult');
-
-/*---------------------------------------
- DOM Functions
----------------------------------------*/
+const track = result.querySelector('.slotTrack');
+const sound = document.getElementById('drawSound');
 
 btnDraw.addEventListener('click', () => {
   const start = parseInt(startInput.value);
@@ -24,9 +26,22 @@ btnDraw.addEventListener('click', () => {
   const finalNumber = Math.floor(Math.random() * (end - start + 1)) + start;
 
   let cycles = 0;
-  const maxCycles = 10;
+  const maxCycles = 18;
+  let delay = 40;
 
-  const interval = setInterval(() => {
+  // remover estado anterior
+  result.classList.remove('final');
+
+  // iniciar animação
+  result.classList.add('spinning');
+
+  // inicia som
+  if (sound) {
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+  }
+
+  function spin() {
     const tempNumber = Math.floor(Math.random() * (end - start + 1)) + start;
 
     result.textContent = tempNumber;
@@ -34,10 +49,27 @@ btnDraw.addEventListener('click', () => {
     cycles++;
 
     if (cycles >= maxCycles) {
-      clearInterval(interval);
       result.textContent = finalNumber;
+
+      // parar animação
+      result.classList.remove('spinning');
+      result.classList.add('final');
+
+      // parar som
+      if (sound) {
+        sound.pause();
+        sound.currentTime = 0;
+      }
+
+      return;
     }
-  }, 70);
+
+    delay += 8;
+
+    setTimeout(spin, delay);
+  }
+
+  spin();
 });
 
 document.addEventListener('DOMContentLoaded', () => {

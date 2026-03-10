@@ -410,11 +410,54 @@ input[type='button']:active {
 
   background: #fafafa;
 
-  transition: transform 0.1s;
+  text-align: center;
+
+  position: relative;
+
+  transition: transform 0.15s ease;
 }
 
-#drawResult:active {
-  transform: scale(1.05);
+/* efeito leve enquanto sorteia */
+
+#drawResult.spinning {
+  animation: spinPulse 0.2s ease-in-out infinite alternate;
+}
+
+@keyframes spinPulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+/* número final destacado */
+
+#drawResult.final {
+  color: #2563eb;
+
+  text-shadow:
+    0 0 8px rgba(37, 99, 235, 0.6),
+    0 0 16px rgba(37, 99, 235, 0.3);
+
+  /* transform: scale(1.18); */
+}
+
+/* marcador central estilo visor */
+
+#drawResult::after {
+  content: '';
+
+  position: absolute;
+
+  left: 10%;
+  right: 10%;
+  top: 50%;
+
+  /* border-top: 2px solid #2563eb; */
+
+  opacity: 0.25;
 }
 
 /* RESPONSIVIDADE */
