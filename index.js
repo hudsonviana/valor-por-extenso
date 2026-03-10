@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     element.textContent = new Date().getFullYear();
   }
 
-  inputAmount.focus();
+  // inputAmount.focus();
 });
 
 /*---------------------------------------
