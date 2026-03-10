@@ -8,18 +8,18 @@ btnDraw.addEventListener('click', () => {
   const end = parseInt(endInput.value);
 
   if (isNaN(start) || isNaN(end)) {
-    result.value = 'Informe os dois valores.';
+    result.textContent = 'Informe os dois valores.';
     return;
   }
 
   if (start > end) {
-    result.value = 'O valor inicial não pode ser maior que o final.';
+    result.textContent = 'O valor inicial não pode ser maior que o final.';
     return;
   }
 
   const randomNumber = Math.floor(Math.random() * (end - start + 1)) + start;
 
-  result.value = randomNumber;
+  result.textContent = randomNumber;
 });
 
 document.addEventListener('DOMContentLoaded', () => {

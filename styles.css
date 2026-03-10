@@ -374,9 +374,19 @@ input[type='button']:active {
 /* SORTEIO */
 
 #drawResult {
-  font-size: 1.3rem;
-  text-align: center;
-  font-weight: 600;
+  min-height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+
+  background: #fafafa;
 }
 
 @-webkit-keyframes animatetop {
