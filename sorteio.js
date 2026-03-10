@@ -3,6 +3,10 @@ const endInput = document.getElementById('endNumber');
 const btnDraw = document.getElementById('btnDrawNumber');
 const result = document.getElementById('drawResult');
 
+/*---------------------------------------
+ DOM Functions
+---------------------------------------*/
+
 btnDraw.addEventListener('click', () => {
   const start = parseInt(startInput.value);
   const end = parseInt(endInput.value);
@@ -17,9 +21,23 @@ btnDraw.addEventListener('click', () => {
     return;
   }
 
-  const randomNumber = Math.floor(Math.random() * (end - start + 1)) + start;
+  const finalNumber = Math.floor(Math.random() * (end - start + 1)) + start;
 
-  result.textContent = randomNumber;
+  let cycles = 0;
+  const maxCycles = 10;
+
+  const interval = setInterval(() => {
+    const tempNumber = Math.floor(Math.random() * (end - start + 1)) + start;
+
+    result.textContent = tempNumber;
+
+    cycles++;
+
+    if (cycles >= maxCycles) {
+      clearInterval(interval);
+      result.textContent = finalNumber;
+    }
+  }, 70);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
