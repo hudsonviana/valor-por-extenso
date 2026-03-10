@@ -7,6 +7,7 @@ const endInput = document.getElementById('endNumber');
 const btnDraw = document.getElementById('btnDrawNumber');
 const result = document.getElementById('drawResult');
 const sound = document.getElementById('drawSound');
+const jackpotSound = document.getElementById('jackpotSound');
 const fade = document.querySelector('#fade');
 const modalTitle = document.querySelector('#message h4');
 const modalMessage = document.querySelector('#message p');
@@ -165,6 +166,10 @@ btnDraw.addEventListener('click', () => {
 
       if (finalNumber === end) {
         launchConfetti();
+        if (jackpotSound) {
+          jackpotSound.currentTime = 0;
+          jackpotSound.play().catch(() => {});
+        }
       }
 
       drawing = false;
