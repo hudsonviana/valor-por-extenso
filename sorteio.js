@@ -28,7 +28,15 @@ btnClose.addEventListener('click', () => {
   closeModalMessage();
 });
 
+let drawing = false;
 btnDraw.addEventListener('click', () => {
+  if (drawing) return;
+
+  drawing = true;
+
+  btnDraw.disabled = true;
+  btnDraw.value = 'Sorteando...';
+
   const start = parseInt(startInput.value);
   const end = parseInt(endInput.value);
 
@@ -89,6 +97,11 @@ btnDraw.addEventListener('click', () => {
         sound.pause();
         sound.currentTime = 0;
       }
+
+      drawing = false;
+
+      btnDraw.disabled = false;
+      btnDraw.value = 'Sortear número';
 
       return;
     }

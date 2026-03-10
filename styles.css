@@ -460,6 +460,11 @@ input[type='button']:active {
   opacity: 0.25;
 }
 
+#btnDrawNumber:disabled {
+  /* opacity: 0.6; */
+  cursor: not-allowed;
+}
+
 /* RESPONSIVIDADE */
 @media (max-width: 600px) {
   body {
