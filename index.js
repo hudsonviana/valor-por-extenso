@@ -103,7 +103,7 @@ function getAmountInWords(amount) {
 }
 
 /*---------------------------------------
- Dom Functions
+ DOM Functions
 ---------------------------------------*/
 
 const inputAmount = document.querySelector('#amount');
@@ -241,13 +241,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   inputAmount.focus();
+});
 
-  // const preventZoom = (e) => {
-  //   if (e.touches && e.touches.length > 1) {
-  //     e.preventDefault();
-  //   }
-  // };
+/*---------------------------------------
+  Menu
+---------------------------------------*/
 
-  // document.addEventListener('gesturestart', (e) => e.preventDefault());
-  // document.addEventListener('touchmove', preventZoom, { passive: false });
+const menuBtn = document.getElementById('menuBtn');
+const sideMenu = document.getElementById('sideMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+
+menuBtn.addEventListener('click', () => {
+  sideMenu.classList.toggle('open');
+  menuOverlay.classList.toggle('visible');
+});
+
+menuOverlay.addEventListener('click', () => {
+  sideMenu.classList.remove('open');
+  menuOverlay.classList.remove('visible');
 });
